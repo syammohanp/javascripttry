@@ -67,3 +67,29 @@ watchTutorialPromise().then((message) => {
 }).catch((err) => {
     console.log('error promise', err.name, err.message);
 })
+
+
+const download1 = new Promise((resolve,reject) => {
+    resolve('1 downloaded');
+})
+
+const download2 = new Promise((resolve, reject) => {
+    resolve('2 downloaded')
+})
+
+const download3 = new Promise((resolve, reject) => {
+    resolve('3 downloaded')
+})
+
+Promise.all([
+    download1, 
+    download2, 
+    download3
+]).then((messages) => {
+        console.log('all downloaded', messages);
+})
+Promise.race([download1,
+download2,
+download3]).then(message => {
+    console.log('one downloaded', message);
+})
